@@ -11,7 +11,6 @@ public class find_position {
         return ans;
     }
 
-
     public int lower_bound(int[] nums, int target)
     {
         int n = nums.length;
