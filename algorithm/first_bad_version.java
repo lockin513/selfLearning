@@ -6,16 +6,13 @@ public class first_bad_version {
         while(l<=r)
         {
             p = l + (r-l)/2;
-            if(isBadVersion(p))
-            {
-                r = p-1;
-            }
-            else if(!isBadVersion(p))
-            {
-                l = p+1;
-            }
+            if(isBadVersion(p)) r = p-1;
+            else l = p+1;
         }
-        if(isBadVersion(p))return p;
-        else return p+1;
+        return l;
+    }
+
+    public boolean isBadVersion(int n) {
+        return n < 1;
     }
 }

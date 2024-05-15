@@ -17,7 +17,6 @@ public class search_insert_position {
             }
             else return p;
         }
-        if(nums[p]>target)return p;
-        else return p+1;
+        return l;
     }
 }
