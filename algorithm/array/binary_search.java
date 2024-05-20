@@ -1,3 +1,5 @@
+package binarySearch;
+
 //leetcode704 二分查找
 public class binary_search {
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package binarySearch;
+
 public class sqrtx {
     public int mySqrt(int x) {
         int l = 0, r = x, ans = 0;

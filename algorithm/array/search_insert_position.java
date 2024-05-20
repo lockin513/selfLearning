@@ -1,3 +1,5 @@
+package binarySearch;
+
 //leetcode35 搜索插入位置
 public class search_insert_position {
     public int searchInsert(int[] nums, int target) {

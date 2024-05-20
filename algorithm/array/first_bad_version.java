@@ -1,3 +1,5 @@
+package binarySearch;
+
 //leetcode278 第一个错误的版本
 public class first_bad_version {
     public int firstBadVersion(int n) {

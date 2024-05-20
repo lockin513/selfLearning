@@ -1,3 +1,5 @@
+package binarySearch;
+
 public class valid_perfect_square {
     public boolean isPerfectSquare(int num) {
         int l = 0, r = num;
