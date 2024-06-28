@@ -31,20 +31,21 @@ public class map {
         // 遍历方式一：键找值
         Set<String> keys = map.keySet();
         for(String key:keys){
-            System.out.println(key+":"+map.get(key));
+            String value = map.get(key);
+            System.out.println(key+value);
         }
         // 遍历方式二：键值对
         Set<Map.Entry<String,String>> entries = map.entrySet();
         for(Map.Entry<String,String> entry:entries){
             String key = entry.getKey();
             String value = entry.getValue();
-            System.out.println(key+":"+value);
+            System.out.println(key+value);
         }
         // 遍历方式三：lambda表达式
         map.forEach(new BiConsumer<String,String>(){
             @Override
-            public void accept(String key,String value){
-                System.out.println(key+":"+value);
+            public void accept(String key, String value) {
+                System.out.println(key+value);
             }
         });
     }

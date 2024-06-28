@@ -16,13 +16,13 @@ public class collectionSet {
         // 遍历方式二：迭代器
         Iterator<String> it = set.iterator();
         while(it.hasNext()){
-            String str = it.next();
-            System.out.println(str);
+            String s = it.next();
+            System.out.println(s);
         }
-        // 遍历方式三：lambda
+        // 遍历方式三：lambda表达式
         set.forEach(new Consumer<String>(){
             @Override
-            public void accept(String s){
+            public void accept(String s) {
                 System.out.println(s);
             }
         });
