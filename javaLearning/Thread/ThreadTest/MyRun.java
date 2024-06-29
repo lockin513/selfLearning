@@ -1,11 +1,26 @@
 package Thread.ThreadTest;
 
 public class MyRun implements Runnable{
-    Thread t = Thread.currentThread();
+    int ticket = 0;
     @Override
     public void run() {
-        for(int i=0;i<10;i++){
-            System.out.println(t.getName()+i);
+        while(true){
+            synchronized (MyRun.class) {
+                if (method()) break;
+            }
+            try{
+                Thread.sleep(100);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+    }
+
+    private boolean method() {
+        if(ticket<100){
+            ticket++;
+            System.out.println(Thread.currentThread().getName()+"正在卖第"+ticket+"张票");
+        }else return true;
+        return false;
     }
 }
