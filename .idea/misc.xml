@@ -8,6 +8,12 @@
         <option value="$PROJECT_DIR$/../workplace/idea_workplace/itheima_web_project/springboot-mybatis-quickstart/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../workplace/idea_workplace/itheima_web_project/maven-project01/pom.xml" />
+        <option value="$PROJECT_DIR$/../workplace/idea_workplace/itheima_web_project/springboot-mybatis-quickstart/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
