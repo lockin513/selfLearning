@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/javaLearning" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/algorithm/backTracking" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/algorithm/greed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/algorithm/hash" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
