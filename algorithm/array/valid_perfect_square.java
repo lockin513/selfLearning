@@ -1,19 +1,15 @@
-package binarySearch;
-
 public class valid_perfect_square {
-    public boolean isPerfectSquare(int num) {
-        int l = 0, r = num;
-        int mid = 0;
-        while(l<=r)
-        {
-            mid = (r-l)/2+l;
-            if((long)mid*mid<=num)
+    class Solution {
+        public boolean isPerfectSquare(int num) {
+            int l=1,r=num/2+1;
+            while(l<=r)
             {
-                l = mid+1;
+                int mid = (r-l)/2+l;
+                if((long)mid*mid<=num)l=mid+1;
+                else r=mid-1;
             }
-            else r = mid-1;
+            if((long)r*r==num)return true;
+            else return false;
         }
-        if((long)r*r!=num)return false;
-        else return true;
     }
 }
