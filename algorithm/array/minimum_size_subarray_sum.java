@@ -1,21 +1,19 @@
 public class minimum_size_subarray_sum {
-    public int minSubArrayLen(int target, int[] nums) {
-        int len = nums.length;
-        int slow = 0;
-        int ans = len+1;
-        int rem = 0;
-        int fast = 0;
-        while(fast<len)
-        {
-            rem+=nums[fast];
-            while(rem>=target)
+    class Solution {
+        public int minSubArrayLen(int target, int[] nums) {
+            int sum=0,count=0,ans=100001,left=0,right=0;
+            while(right<nums.length)
             {
-                ans = Math.min(ans,fast-slow+1);
-                rem -= nums[slow];
-                slow++;
+                sum+=nums[right];
+                while(sum>=target)
+                {
+                    ans=Math.min(ans,right-left+1);
+                    sum-=nums[left];
+                    left++;
+                }
+                right++;
             }
-            fast++;
+            return ans==100001?0:ans;
         }
-        return ans==len+1?0:ans;
     }
 }
