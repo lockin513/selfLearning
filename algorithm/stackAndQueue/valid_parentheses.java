@@ -1,32 +1,21 @@
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class valid_parentheses {
-    public boolean isValid(String s) {
-        int n = s.length();
-        if (n % 2 == 1) {
-            return false;
-        }
-
-        Map<Character, Character> pairs = new HashMap<Character, Character>() {{
-            put(')', '(');
-            put(']', '[');
-            put('}', '{');
-        }};
-        Deque<Character> stack = new LinkedList<Character>();
-        for (int i = 0; i < n; i++) {
-            char ch = s.charAt(i);
-            if (pairs.containsKey(ch)) {
-                if (stack.isEmpty() || stack.peek() != pairs.get(ch)) {
-                    return false;
-                }
-                stack.pop();
-            } else {
-                stack.push(ch);
+    class Solution {
+        public boolean isValid(String s) {
+            if(s.length()%2!=0)return false;
+            Stack<Character> stack = new Stack<>();
+            for(int i=0;i<s.length();i++)
+            {
+                char c = s.charAt(i);
+                if(c=='(' || c=='{' || c=='[')stack.push(s.charAt(i));
+                if(stack.isEmpty())return false;
+                if(c==')' && stack.pop()!='(')return false;
+                if(c=='}' && stack.pop()!='{')return false;
+                if(c==']' && stack.pop()!='[')return false;
             }
+            if(stack.isEmpty())return true;
+            else return false;
         }
-        return stack.isEmpty();
     }
 }
