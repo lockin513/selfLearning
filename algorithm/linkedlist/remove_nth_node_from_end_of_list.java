@@ -1,23 +1,20 @@
 public class remove_nth_node_from_end_of_list {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummyhead = new ListNode(-1,head);
-        ListNode f = dummyhead;
-        ListNode s = dummyhead;
-        int len = n;
-        while(len>0)
-        {
-            f = f.next;
-            len--;
+    class Solution {
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummyhead = new ListNode(0,head);
+            ListNode p = dummyhead;
+            int size = 0;
+            while(p.next!=null)
+            {
+                p=p.next;
+                size++;
+            }
+            p=dummyhead;
+            for(int i=0;i<size-n;i++)p=p.next;
+            p.next=p.next.next;
+            return dummyhead.next;
         }
-        while(f.next!=null)
-        {
-            f = f.next;
-            s = s.next;
-        }
-        s.next = s.next.next;
-        return dummyhead.next;
     }
-
     public class ListNode {
         int val;
         ListNode next;

@@ -1,17 +1,16 @@
 public class remove_linked_list_elements {
-    public ListNode removeElements(ListNode head, int val) {
-        ListNode p = new ListNode(0);
-        p = head;
-        if(head==null)return head;
-        while(p.next!=null)
-        {
-            if(p.next.val==val)
+    class Solution {
+        public ListNode removeElements(ListNode head, int val) {
+            ListNode ans = new ListNode();
+            ans.next=head;
+            ListNode p = ans;
+            while(p.next!=null)
             {
-                p.next = p.next.next;
+                if(p.next.val==val)p.next=p.next.next;
+                else p=p.next;
             }
-            else p = p.next;
+            return ans.next;
         }
-        return head.val!=val?head:head.next;
     }
 
     public class ListNode {
