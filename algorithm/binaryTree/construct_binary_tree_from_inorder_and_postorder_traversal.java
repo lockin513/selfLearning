@@ -1,21 +1,20 @@
 import java.util.HashMap;
 
 public class construct_binary_tree_from_inorder_and_postorder_traversal {
-    HashMap<Integer,Integer> memo = new HashMap<>();
-    int[] post;
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        for(int i=0;i<inorder.length;i++)memo.put(inorder[i],i);
-        post = postorder;
-        return build(0,inorder.length-1,0,postorder.length-1);
-    }
-    public TreeNode build(int inLeft, int inRight, int postLeft, int postRight){
-        if(postLeft>postRight || inLeft>inRight)return null;
-        int value = post[postRight];
-        TreeNode node = new TreeNode(value);
-        if(postRight==postLeft)return node;
-        int index=memo.get(value);
-        node.left = build(inLeft,index-1,postLeft,postLeft+index-inLeft-1);
-        node.right = build(index+1,inRight,postLeft+index-inLeft,postRight-1);
-        return node;
+    class Solution {
+        public TreeNode buildTree(int[] inorder, int[] postorder) {
+            return build(inorder,0,inorder.length-1,postorder,0,postorder.length-1);
+        }
+        public TreeNode build(int[] inorder,int inBegin,int inEnd,int[] postorder,int postBegin,int postEnd){
+            if(inBegin>inEnd || postBegin>postEnd)return null;
+            int num = postorder[postEnd];
+            TreeNode temp = new TreeNode(num);
+            int pos = 0;
+            for(int i=inBegin;i<=inEnd;i++)
+                if(inorder[i]==num)pos=i;
+            temp.left = build(inorder,inBegin,pos-1,postorder,postBegin,postBegin+pos-inBegin-1);
+            temp.right = build(inorder,pos+1,inEnd,postorder,postBegin+pos-inBegin,postEnd-1);
+            return temp;
+        }
     }
 }
