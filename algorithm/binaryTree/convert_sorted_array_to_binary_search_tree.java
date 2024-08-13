@@ -1,15 +1,17 @@
 public class convert_sorted_array_to_binary_search_tree {
-    public TreeNode sortedArrayToBST(int[] nums) {
-        if(nums.length==0)return null;
-        else if(nums.length==1)return new TreeNode(nums[0]);
-        int index = nums.length/2;
-        int[] left = new int[index];
-        int[] right = new int[nums.length-index-1];
-        for(int i=0;i<index;i++)left[i]=nums[i];
-        for(int i=0;i<nums.length-index-1;i++)right[i]=nums[index+i+1];
-        TreeNode root = new TreeNode(nums[index]);
-        root.left = sortedArrayToBST(left);
-        root.right = sortedArrayToBST(right);
-        return root;
+    class Solution {
+        int[] num;
+        public TreeNode sortedArrayToBST(int[] nums) {
+            num=nums;
+            return build(0,num.length-1);
+        }
+        public TreeNode build(int left,int right){
+            if(left>right)return null;
+            int pos = (left+right)/2;
+            TreeNode node = new TreeNode(num[pos]);
+            node.left = build(left,pos-1);
+            node.right = build(pos+1,right);
+            return node;
+        }
     }
 }
