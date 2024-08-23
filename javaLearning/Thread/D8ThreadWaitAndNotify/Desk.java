@@ -1,10 +1,11 @@
 package Thread.D8ThreadWaitAndNotify;
 
+import java.util.Objects;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Desk {
-    public static int flag = 0;
-    public static Lock lock = new ReentrantLock();
-    public static int count = 10;
+   static int foodflag = 0;
+   static Object lock = new Object();
+   static int count = 10;
 }

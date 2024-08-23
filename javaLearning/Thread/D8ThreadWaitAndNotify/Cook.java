@@ -5,18 +5,18 @@ public class Cook extends Thread{
     public void run() {
         while(true){
             synchronized (Desk.lock){
-                if(Desk.flag==0){
-                    if(Desk.count>0){
-                        Desk.flag = 1;
-                        System.out.println("厨师又做了一碗饭");
+                if(Desk.count==0)break;
+                else{
+                    if(Desk.foodflag==1){
+                        try {
+                            Desk.lock.wait();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }else {
+                        System.out.println("厨师正在做面条");
+                        Desk.foodflag=1;
                         Desk.lock.notifyAll();
-                    }
-                    else break;
-                } else {
-                    try {
-                        Desk.lock.wait();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
                     }
                 }
             }

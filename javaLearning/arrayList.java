@@ -28,7 +28,7 @@ public class arrayList {
         list.add("BBB");
         System.out.println("-----");
         // 遍历方式一：普通for
-        for(int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }
         // 遍历方式二：增强for
@@ -37,7 +37,7 @@ public class arrayList {
         }
         // 遍历方式三：迭代器
         Iterator<String> it = list.iterator();
-        while(it.hasNext()) {
+        while(it.hasNext()){
             System.out.println(it.next());
         }
         // 遍历方式四：lambda表达式

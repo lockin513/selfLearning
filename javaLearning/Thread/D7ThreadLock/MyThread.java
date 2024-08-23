@@ -10,16 +10,13 @@ public class MyThread extends Thread {
     public void run() {
         while (true) {
             lock.lock();
+            if(ticket>=100)break;
+            else System.out.println(getName()+"正在卖出第"+ ++ticket +"张票");
             try {
-                if (ticket == 100) break;
-                else{
-                    ticket++;
-                    System.out.println(getName()+"正在卖第"+ticket+"张票");
-                    Thread.sleep(100);
-                }
-            } catch (Exception e) {
+                sleep(100);
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            } finally {
+            }finally {
                 lock.unlock();
             }
         }
