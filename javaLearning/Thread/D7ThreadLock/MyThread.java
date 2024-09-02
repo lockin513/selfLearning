@@ -9,15 +9,18 @@ public class MyThread extends Thread {
     @Override
     public void run() {
         while (true) {
-            lock.lock();
-            if(ticket>=100)break;
-            else System.out.println(getName()+"正在卖出第"+ ++ticket +"张票");
             try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }finally {
+                lock.lock();
+                if(ticket==100)break;
+                ticket++;
+                System.out.println(getName()+"正在卖出第"+ticket+"张票");
+            } finally {
                 lock.unlock();
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
