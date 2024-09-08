@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class test {
+class test {
     public static void main(String[] args) {
-        List<int[]> rem = new ArrayList<>();
-        rem.add(new int[]{1,2});
-        System.out.println(rem.get(0)[1]);
+        Scanner in = new Scanner(System.in); // Create a Scanner object named in.
+        int a = in.nextInt(); // let in read a integer from command line and assign the value to variable a.
+        System.out.println("Your input integer is: " + a);  // Display "Your input integer is: " and variable a.
     }
 }
