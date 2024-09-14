@@ -3,17 +3,14 @@ public class target_sum {
         public int findTargetSumWays(int[] nums, int target) {
             int sum = 0;
             for(int i=0;i<nums.length;i++)sum+=nums[i];
-            if((sum-target)%2!=0 || sum-target<0)return 0;
-            int neg = (sum-target)/2;
-            int[] dp = new int[neg+1];
+            if((sum+target)%2!=0 || Math.abs(target)>sum)return 0;
+            int bagSize = (sum+target)/2;
+            int[] dp = new int[bagSize+1];
             dp[0]=1;
-            for(int i=1;i<=nums.length;i++)
-            {
-                int num = nums[i-1];
-                for(int j=neg;j>=0;j--)
-                    if(j>=num)dp[j]=dp[j]+dp[j-num];
-            }
-            return dp[neg];
+            for(int i=0;i<nums.length;i++)
+                for(int j=bagSize;j>=nums[i];j--)
+                    dp[j] += dp[j-nums[i]];
+            return dp[bagSize];
         }
     }
 }
