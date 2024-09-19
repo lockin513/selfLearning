@@ -3,25 +3,25 @@ import java.util.List;
 
 public class letter_combinations_of_a_phone_number {
     class Solution {
-        List<String> ans = new ArrayList<>();
+        String[] str = new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         StringBuilder path = new StringBuilder();
-        String[] str = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String> ans = new ArrayList<>();
         public List<String> letterCombinations(String digits) {
             if(digits.length()==0)return ans;
             backTracking(digits,0);
             return ans;
         }
-        public void backTracking(String digits,int index){
-            if(index==digits.length())
+        public void backTracking(String digits,int startIndex){
+            if(path.length()==digits.length())
             {
                 ans.add(path.toString());
                 return;
             }
-            String cha = str[digits.charAt(index)-'0'];
-            for(int i=0;i<cha.length();i++)
+            String temp = str[digits.charAt(startIndex)-'0'];
+            for(int i=0;i<temp.length();i++)
             {
-                path.append(cha.charAt(i));
-                backTracking(digits,index+1);
+                path.append(temp.charAt(i));
+                backTracking(digits,startIndex+1);
                 path.deleteCharAt(path.length()-1);
             }
         }

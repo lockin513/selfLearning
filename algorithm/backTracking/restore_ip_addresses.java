@@ -3,37 +3,44 @@ import java.util.List;
 
 public class restore_ip_addresses {
     class Solution {
+        List<String> path = new ArrayList<>();
         List<String> ans = new ArrayList<>();
         public List<String> restoreIpAddresses(String s) {
-            if(s.length()>12)return ans;
-            StringBuilder path = new StringBuilder(s);
-            backTracking(path,0,0);
+            backTracking(s,0);
             return ans;
         }
-        public void backTracking(StringBuilder path, int startIndex, int dot){
-            if(dot==3)
+        public void backTracking(String s,int startIndex){
+            if(path.size()>4)return;
+            if(startIndex==s.length() && path.size()==4)
             {
-                if(!isValid(path,startIndex,path.length()-1))return;
-                ans.add(path.toString());
+                StringBuilder sb = new StringBuilder();
+                for(int i=0;i<path.size()-1;i++)
+                    sb.append(path.get(i)+".");
+                sb.append(path.get(path.size()-1));
+                ans.add(sb.toString());
                 return;
             }
-            for(int i=startIndex;i<path.length();i++)
+            for(int i=startIndex;i<s.length() && i<startIndex+4;i++)
             {
-                if(!isValid(path,startIndex,i))continue;
-                path.insert(i+1,".");
-                backTracking(path,i+2,dot+1);
-                path.deleteCharAt(i+1);
+                String str = s.substring(startIndex,i+1);
+                if(isValid(str))
+                {
+                    path.add(str);
+                    backTracking(s,i+1);
+                    path.remove(path.size()-1);
+                }
             }
         }
-        public boolean isValid(StringBuilder s, int startIndex, int end){
-            if(startIndex>end)return false;
-            if(s.charAt(startIndex)=='0' && end>startIndex)return false;
-            int sum = 0;
-            for(int i=startIndex;i<=end;i++){
-                int digit = s.charAt(i)-'0';
-                sum = sum*10 + digit;
-                if(sum>255)return false;
+        public boolean isValid(String str){
+            if(str.length()>1 && str.charAt(0)=='0')return false;
+            int num=0;
+            int mul=1;
+            for(int i=str.length()-1;i>=0;i--){
+                int digit = str.charAt(i)-'0';
+                num+=digit*mul;
+                mul*=10;
             }
+            if(num>255)return false;
             return true;
         }
     }
