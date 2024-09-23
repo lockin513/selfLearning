@@ -1,11 +1,9 @@
-package binarySearch;
 
 // leetcode34 在排序数组中查找元素的第一个和最后一个位置
 public class find_position {
     public int[] searchRange(int[] nums, int target) {
         int[] ans = {-1,-1};
         int low = lower_bound(nums,target);
-        // low == nums.length处理的是nums为空以及所有数都小于target的情况
         if(low == nums.length || nums[low]!=target)return ans;
         int high = lower_bound(nums,target+1)-1;
         ans[0] = low;
