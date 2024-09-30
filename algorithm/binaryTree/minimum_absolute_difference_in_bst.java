@@ -1,15 +1,22 @@
 public class minimum_absolute_difference_in_bst {
-    int min=100000;
-    int pre=-100000;
-    public int getMinimumDifference(TreeNode root) {
-        findDiff(root);
-        return min;
-    }
-    public void findDiff(TreeNode root){
-        if(root==null)return;
-        findDiff(root.left);
-        if(root.val-pre<min)min=root.val-pre;
-        pre=root.val;
-        findDiff(root.right);
+    class Solution {
+        int mini = 999999;
+        int pre=0;
+        int flag = 1;
+        public int getMinimumDifference(TreeNode root) {
+            inorder(root);
+            return mini;
+        }
+        public void inorder(TreeNode root){
+            if(root==null)return;
+            inorder(root.left);
+            if(flag==1)flag=0;
+            else
+            {
+                if(root.val-pre<mini)mini=root.val-pre;
+            }
+            pre=root.val;
+            inorder(root.right);
+        }
     }
 }
